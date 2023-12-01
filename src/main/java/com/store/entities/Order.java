@@ -3,38 +3,38 @@ package com.store.entities;
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
+@Table(name="orders")
 public class Order {
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
-    private String orderId;
-    @Temporal(TemporalType.DATE)
-    private Date createdDate;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long orderId;
+    private LocalDate createdDate;
     @ManyToOne
     private Client client;
-    @ManyToMany
-    private ArrayList<Product> products;
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL) //
+    private List<OrderProducts> products;
+    private double totalPrice;
 
-    public Order() {
-    }
 
-    public String getOrderId() {
+    public Long getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(String orderId) {
+    public void setOrderId(Long orderId) {
         this.orderId = orderId;
     }
 
-    public Date getCreatedDate() {
+    public LocalDate getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(Date createdDate) {
+    public void setCreatedDate(LocalDate createdDate) {
         this.createdDate = createdDate;
     }
 
@@ -46,12 +46,19 @@ public class Order {
         this.client = client;
     }
 
-    public ArrayList<Product> getProducts() {
+    public List<OrderProducts> getProducts() {
         return products;
     }
 
-    public void setProducts(ArrayList<Product> products) {
+    public void setProducts(List<OrderProducts> products) {
         this.products = products;
     }
 
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
 }

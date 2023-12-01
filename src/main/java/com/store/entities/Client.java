@@ -3,6 +3,7 @@ package com.store.entities;
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -14,8 +15,7 @@ public class Client {
     private String name;
     private String email;
     private String phone;
-    @Temporal(TemporalType.DATE)
-    private Date uploadedDate;
+    private LocalDate uploadedDate;
     private Boolean active = true;
 
     public Client() {
@@ -53,11 +53,11 @@ public class Client {
         this.phone = phone;
     }
 
-    public Date getUploadedDate() {
+    public LocalDate getUploadedDate() {
         return uploadedDate;
     }
 
-    public void setUploadedDate(Date uploadedDate) {
+    public void setUploadedDate(LocalDate uploadedDate) {
         this.uploadedDate = uploadedDate;
     }
 

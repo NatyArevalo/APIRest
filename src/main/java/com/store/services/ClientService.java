@@ -9,6 +9,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -25,10 +26,11 @@ public class ClientService {
         validate(clientDTO.getName(), clientDTO.getEmail(), clientDTO.getPhone());
         Client client;
         client = mapper.convertValue(clientDTO, Client.class); //Json.mapper.convertValue(map, type);
-        client.setUploadedDate(new Date());
+        client.setUploadedDate(LocalDate.now());
         clientRepository.save(client);
         return clientDTO;
     }
+    @Transactional
     public ClientDTO modifyClient(String id, ClientDTO clientDTO) throws MiException{
         validate(clientDTO.getName(), clientDTO.getEmail(), clientDTO.getPhone());
         Optional<Client> response = clientRepository.findById(id) ;
@@ -41,14 +43,20 @@ public class ClientService {
         }
         return clientDTO;
     }
-    public ClientDTO getClientByID(String id) throws MiException{
+    @Transactional
+    public void deactivateClient(String id) throws MiException{
         if(id == null || id.trim().isEmpty()){
             throw new MiException("Id cannot be empty or null");
         }
         Client client = clientRepository.findById(id).orElseThrow(() -> new RuntimeException("Client not found"));
-        ClientDTO clientDTO;
-        clientDTO = mapper.convertValue(client,ClientDTO.class);
-        return clientDTO;
+        client.setActive(false);
+        clientRepository.save(client);
+    }
+    public Client getClientByID(String id) throws MiException{
+        if(id == null || id.trim().isEmpty()){
+            throw new MiException("Id cannot be empty or null");
+        }
+        return clientRepository.findById(id).orElseThrow(() -> new RuntimeException("Client not found"));
     }
     public List<Client> getClientList(){
         return (ArrayList<Client>) clientRepository.findAll();

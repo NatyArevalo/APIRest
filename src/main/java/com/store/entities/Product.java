@@ -1,9 +1,8 @@
 package com.store.entities;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.GenericGenerator;
+import java.time.LocalDate;
 
-import java.util.Date;
 
 @Entity
 public class Product {
@@ -12,9 +11,8 @@ public class Product {
     private Long productId;
     private String name;
     private double price;
-    @Temporal(TemporalType.DATE)
-    private Date uploadedDate;
-    private Boolean active;
+    private LocalDate uploadedDate;
+    private Boolean active = true;
 
     public Product() {
     }
@@ -43,11 +41,11 @@ public class Product {
         this.price = price;
     }
 
-    public Date getUploadedDate() {
+    public LocalDate getUploadedDate() {
         return uploadedDate;
     }
 
-    public void setUploadedDate(Date uploadedDate) {
+    public void setUploadedDate(LocalDate uploadedDate) {
         this.uploadedDate = uploadedDate;
     }
 

@@ -27,11 +27,15 @@ public class ClientController {
         return clientService.createClient(clientDTO);
     }
     @GetMapping("/{id}")
-    public ClientDTO getClientById(@PathVariable String id) throws MiException {
+    public Client getClientById(@PathVariable String id) throws MiException {
         return clientService.getClientByID(id);
     }
     @PutMapping("/modify/{id}")
     public ClientDTO modifyById(@PathVariable String id, @RequestBody ClientDTO clientDTO) throws MiException, JsonMappingException {
         return clientService.modifyClient(id, clientDTO);
+    }
+    @DeleteMapping("/delete/{id}")
+    public void deleteById(@PathVariable String id) throws MiException {
+        clientService.deactivateClient(id);
     }
 }
