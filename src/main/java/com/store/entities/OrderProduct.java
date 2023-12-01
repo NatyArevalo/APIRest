@@ -3,7 +3,7 @@ package com.store.entities;
 import jakarta.persistence.*;
 
 @Entity
-public class OrderProducts {
+public class OrderProduct {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -57,13 +57,13 @@ public class ProductService {
     public List<Product> getProducts(){
         return (ArrayList<Product>) productRepository.findAll();
     }
-    public ProductDTO getProductById(Long id) throws MiException{
+    public Product getProductById(Long id) throws MiException{
         if(id <= 0){
             throw new MiException("Id cannot be empty or null");
         }
         Product product = productRepository.findById(id).orElseThrow(() -> new RuntimeException("Product not found"));
-        ProductDTO productDTO = mapper.convertValue(product, ProductDTO.class);
-        return productDTO;
+
+        return product;
     }
     public void validate(String name, double price) throws MiException {
         if(name == null || name.trim().isEmpty()){

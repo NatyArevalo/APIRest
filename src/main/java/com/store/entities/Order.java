@@ -1,11 +1,8 @@
 package com.store.entities;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.GenericGenerator;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -18,7 +15,7 @@ public class Order {
     @ManyToOne
     private Client client;
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL) //
-    private List<OrderProducts> products;
+    private List<OrderProduct> orderProducts;
     private double totalPrice;
 
 
@@ -46,12 +43,12 @@ public class Order {
         this.client = client;
     }
 
-    public List<OrderProducts> getProducts() {
-        return products;
+    public List<OrderProduct> getOrderProducts() {
+        return orderProducts;
     }
 
-    public void setProducts(List<OrderProducts> products) {
-        this.products = products;
+    public void setOrderProducts(List<OrderProduct> products) {
+        this.orderProducts = products;
     }
 
     public double getTotalPrice() {

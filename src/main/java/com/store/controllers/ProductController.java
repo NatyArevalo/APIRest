@@ -32,7 +32,7 @@ public class ProductController {
         productService.deactivateProduct(id);
     }
     @GetMapping("/{id}")
-    public ProductDTO getProductById(@PathVariable Long id) throws MiException {
+    public Product getProductById(@PathVariable Long id) throws MiException {
         return productService.getProductById(id);
     }
 }
