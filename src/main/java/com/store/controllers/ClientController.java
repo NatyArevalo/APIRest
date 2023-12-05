@@ -31,7 +31,7 @@ public class ClientController {
         return clientService.getClientByID(id);
     }
     @PutMapping("/modify/{id}")
-    public ClientDTO modifyById(@PathVariable String id, @RequestBody ClientDTO clientDTO) throws MiException, JsonMappingException {
+    public ClientDTO modifyById(@PathVariable String id, @RequestBody ClientDTO clientDTO) throws MiException {
         return clientService.modifyClient(id, clientDTO);
     }
     @DeleteMapping("/delete/{id}")

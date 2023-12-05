@@ -1,5 +1,7 @@
 package com.store.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -11,6 +13,7 @@ public class OrderProduct {
     private Product product;
     private int quantity;
     @ManyToOne
+    @JsonBackReference
     private Order order;
 
     public Order getOrder() {

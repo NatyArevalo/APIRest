@@ -1,5 +1,7 @@
 package com.store.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -14,6 +16,7 @@ public class Order {
     private LocalDate createdDate;
     @ManyToOne
     private Client client;
+    @JsonManagedReference
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL) //
     private List<OrderProduct> orderProducts;
     private double totalPrice;
