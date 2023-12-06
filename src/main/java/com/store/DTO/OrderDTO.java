@@ -9,9 +9,18 @@ import java.util.List;
 public class OrderDTO {
     private ClientDTO clientDTO;
     private LocalDate createdDate;
-    @JsonManagedReference
     private List<OrderProductsDTO> orderProductsDTOs;
     private double totalPrice;
+
+    public OrderDTO() {
+    }
+
+    public OrderDTO(ClientDTO clientDTO, LocalDate createdDate, List<OrderProductsDTO> orderProductsDTOs, double totalPrice) {
+        this.clientDTO = clientDTO;
+        this.createdDate = createdDate;
+        this.orderProductsDTOs = orderProductsDTOs;
+        this.totalPrice = totalPrice;
+    }
 
     public ClientDTO getClientDTO() {
         return clientDTO;

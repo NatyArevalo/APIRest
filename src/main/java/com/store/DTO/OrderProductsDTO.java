@@ -1,13 +1,20 @@
 package com.store.DTO;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.store.entities.Order;
 
 public class OrderProductsDTO {
-    @JsonBackReference
-    private Order order;
+    private Long orderId;
     private ProductDTO productDTO;
     private int qty;
+
+    public OrderProductsDTO() {
+    }
+
+    public OrderProductsDTO(Long orderId, ProductDTO productDTO, int qty) {
+        this.orderId = orderId;
+        this.productDTO = productDTO;
+        this.qty = qty;
+    }
 
     public ProductDTO getProductDTO() {
         return productDTO;
@@ -17,12 +24,12 @@ public class OrderProductsDTO {
         return qty;
     }
 
-    public Order getOrder() {
-        return order;
+    public Long getOrderId() {
+        return orderId;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
     }
 
     public void setProductDTO(ProductDTO productDTO) {

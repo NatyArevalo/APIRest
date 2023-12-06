@@ -1,15 +1,15 @@
 package com.store.DTO;
 
 public class ProductDTO {
-    //private Long id;
+
     private String name;
     private double price;
 
     public ProductDTO() {
     }
 
-    public ProductDTO(Long id, String name, double price) {
-        //this.id = id;
+    public ProductDTO(String name, double price) {
+
         this.name = name;
         this.price = price;
     }
@@ -30,11 +30,4 @@ public class ProductDTO {
         this.price = price;
     }
 
-//    public Long getId() {
-//        return id;
-//    }
-
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
 }

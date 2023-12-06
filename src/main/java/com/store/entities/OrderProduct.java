@@ -1,19 +1,16 @@
 package com.store.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 @Entity
 public class OrderProduct {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private java.lang.Long id;
     @ManyToOne
     private Product product;
     private int quantity;
     @ManyToOne
-    @JsonBackReference
     private Order order;
 
     public Order getOrder() {
@@ -24,11 +21,11 @@ public class OrderProduct {
         this.order = order;
     }
 
-    public Long getId() {
+    public java.lang.Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(java.lang.Long id) {
         this.id = id;
     }
 

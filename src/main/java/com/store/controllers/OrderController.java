@@ -17,11 +17,11 @@ public class OrderController {
     @Autowired
     OrderService orderService;
     @GetMapping("/")
-    public List<Order> getOrders(){
+    public List<OrderDTO> getOrders(){
         return orderService.getOrdersList();
     }
     @GetMapping("/{id}")
-    public Order getOrderById(@PathVariable Long id) throws MiException {
+    public Order getOrderById(@PathVariable java.lang.Long id) throws MiException {
         return (Order) orderService.getOrderById(id);
     }
     @PostMapping("/create")
@@ -30,11 +30,11 @@ public class OrderController {
         return orderService.createOrder(newOrderDTO);
     }
     @PutMapping("/modify/{id}")
-    public OrderDTO modifyById(@PathVariable Long id, @RequestBody NewOrderDTO newOrderDTO) throws MiException {
+    public OrderDTO modifyById(@PathVariable java.lang.Long id, @RequestBody NewOrderDTO newOrderDTO) throws MiException {
         return orderService.modifyById(id, newOrderDTO);
     }
     @DeleteMapping("/delete/{id}")
-    public void deleteById(@PathVariable Long id) throws MiException {
+    public void deleteById(@PathVariable java.lang.Long id) throws MiException {
         orderService.deleteOrder(id);
     }
 }
