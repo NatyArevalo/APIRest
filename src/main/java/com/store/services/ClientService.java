@@ -27,21 +27,22 @@ public class ClientService {
         Client client;
         client = mapper.convertValue(clientDTO, Client.class); //Json.mapper.convertValue(map, type);
         client.setUploadedDate(LocalDate.now());
-        clientRepository.save(client);
-        return clientDTO;
+        Client savedClient = clientRepository.save(client);
+        return mapper.convertValue(savedClient, ClientDTO.class);
     }
     @Transactional
     public ClientDTO modifyClient(String id, ClientDTO clientDTO) throws MiException{
         validate(clientDTO.getName(), clientDTO.getEmail(), clientDTO.getPhone());
-        Optional<Client> response = clientRepository.findById(id) ;
+        Optional<Client> response = clientRepository.findById(id);
+        Client savedClient = new Client();
         if (response.isPresent()){
             Client client = response.get();
             client.setName(clientDTO.getName());
             client.setEmail(clientDTO.getEmail());
             client.setPhone(clientDTO.getPhone());
-            clientRepository.save(client);
+            savedClient = clientRepository.save(client);
         }
-        return clientDTO;
+        return mapper.convertValue(savedClient, ClientDTO.class);
     }
     @Transactional
     public void deactivateClient(String id) throws MiException{

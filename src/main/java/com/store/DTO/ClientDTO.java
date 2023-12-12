@@ -1,5 +1,6 @@
 package com.store.DTO;
 
+import java.util.Objects;
 public class ClientDTO {
 
     private String name;
@@ -37,5 +38,13 @@ public class ClientDTO {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ClientDTO clientDTO = (ClientDTO) o;
+        return Objects.equals(name, clientDTO.name) && Objects.equals(email, clientDTO.email) && Objects.equals(phone, clientDTO.phone);
     }
 }
